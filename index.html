@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="Uma das melhores alternativas caso o site da Doritos caia ou fique offline!"/>
+    <meta name="keywords" content="TarefaSP hacks, TarefaSP scripts, Sala do Futuro hacks, Sala do Futuro scripts, Sala Sem Futuro hacks, Sala dos sem futuro scripts, CMSP Plataformas hacks, CMSP Plataformas scripts, LeiaMe CMSP hacks, Arvore de Livros hacks, Khan Academy automação, Scripts para Khan Academy, Hacks para Matific, Scripts Matific CMSP, Prova Paulista hacks, Redação Paulista scripts, Hacks para SSpeak CMSP, Scripts para Alura educação, Expansão Noturno hacks, Ferramentas para estudantes CMSP, Automação de tarefas escolares SP, Scripts de ensino remoto, Hacks educacionais SP, Scripts de provas online, Gamificação na educação CMSP, Estudo online otimizado CMSP, Plataformas educacionais hacks SP, Sala dos Sem Futuro plataformas, Scripts Sala Sem Futuro"/>
+    <link rel="icon" href="https://i.imgur.com/4JEb2u5.png" type="image/png"/>
+    <meta name="author" content="Alomy"/>
+    <title>Plataform Hacker</title>
+
+    <meta property="og:title" content="Plataform Hacker"/>
+    <meta property="og:description" content="Uma das melhores alternativas caso o site da Doritos caia ou fique offline!"/>
+    <meta property="og:image" content="https://i.imgur.com/hEUwNdP.png"/>
+    <meta property="og:url" content="https://darkmodde.github.io/SalaSemFuturo/"/>
+    <meta property="og:type" content="website"/>
+
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="Plataform Hacker"/>
+    <meta name="twitter:description" content="Uma das melhores alternativas caso o site da Doritos caia ou fique offline!"/>
+    <meta name="twitter:image" content="https://i.imgur.com/hEUwNdP.png"/>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+
+    <link rel="stylesheet" href="style.css"/>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "3181c0dc1eed48ca871c007a700ac85f"}'></script>
+</head>
+<body oncontextmenu="return false;">
+    <div class="container">
+        <img src="https://cdn.discordapp.com/attachments/1375919710167896226/1380541335232057414/logo.png?ex=684440cf&is=6842ef4f&hm=5e7b288748249bdd111b201359458dce7778207b5e2a23435c3d2777dde1732d&" alt="Logo" class="profile-image">
+        <h1>Plataform Hacker</h1>
+
+        <form id="Enviar">
+            <div class="form-group">
+                <label for="ra">Registro Acadêmico (RA):</label>
+                <input type="text" id="ra" required placeholder="Digite seu RA">
+            </div>
+
+            <div class="form-group">
+                <label for="senha">Senha:</label>
+                <div class="password-container">
+                    <input type="password" id="senha" required placeholder="Digite sua senha">
+                    <span class="toggle-password" id="togglePassword">
+                        <i class="fas fa-eye"></i>
+                    </span>
+                </div>
+            </div>
+
+            <div class="time-range-group">
+                <div class="form-group">
+                    <label for="tempoMin">Tempo Mín. por Tarefa (minutos):</label>
+                    <input type="number" id="tempoMin" min="0" value="1" required placeholder="Ex: 1">
+                </div>
+                <div class="form-group">
+                    <label for="tempoMax">Tempo Máx. por Tarefa (minutos):</label>
+                    <input type="number" id="tempoMax" min="0" value="5" required placeholder="Ex: 5">
+                </div>
+            </div>
+
+            <div class="form-group anti-bot-challenge">
+                <label for="antiBotAnswer" id="antiBotQuestion"></label>
+                <input type="text" id="antiBotAnswer" required placeholder="Sua resposta">
+            </div>
+
+            <button type="submit" id="submitBtn">Fazer Tarefas</button>
+        </form>
+    </div>
+
+    <div class="modal" id="progressModal">
+        <div class="modal-content">
+            <div class="loader">
+                <div class="spinner"></div>
+            </div>
+            <h2>Processando Atividades</h2>
+            <div class="task-info">
+                <p><strong>Tarefa atual:</strong> <span id="currentTask">Nenhuma</span></p>
+                <p><strong>Progresso:</strong> <span id="taskProgress">0</span> de <span id="totalTasks">0</span></p>
+                <p><strong>Tempo restante:</strong> <span id="timeRemaining" class="time-remaining">0:00</span></p>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress" id="progressBar"></div>
+                </div>
+            </div>
+            <button class="close-modal" id="closeModal">Fechar</button>
+        </div>
+    </div>
+
+    <div class="footer">
+        Plataform Hacker todos os direitos reservados - By Z
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
