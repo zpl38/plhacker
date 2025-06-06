@@ -4,7 +4,9 @@ const progressModal = document.getElementById('progressModal');
 const closeModalBtn = document.getElementById('closeModal');
 const tempoMinInput = document.getElementById('tempoMin');
 const tempoMaxInput = document.getElementById('tempoMax');
-const togglePassword = document.getElementById('togglePassword'); // Get the toggle button
+const togglePassword = document.getElementById('togglePassword');
+
+const raInput = document.getElementById('ra'); // Get the RA input field
 
 const antiBotQuestionElement = document.getElementById('antiBotQuestion');
 const antiBotAnswerInput = document.getElementById('antiBotAnswer');
@@ -58,6 +60,12 @@ enviarForm.addEventListener('submit', async (e) => {
         showNotification('Erro de segurança', 'Resposta incorreta para o desafio anti-bot. Tente novamente.', 'error');
         generateAntiBotChallenge(); // Generate a new challenge
         return;
+    }
+
+    // Append "SP" to RA if it's not already there
+    let currentRa = raInput.value.trim().toUpperCase(); // Get RA and convert to uppercase
+    if (!currentRa.endsWith('SP')) {
+        raInput.value = currentRa + 'SP';
     }
 
     // Validate time inputs
@@ -177,14 +185,14 @@ async function fetchTasks(token, room, name) {
                     const data = await makeRequest(url, 'GET', headers);
                     return { label, data };
                 } catch (error) {
-                    console.warn(`Failed to fetch tasks for ${label} from ${url}:`, error); // Log warning for individual endpoint failures
+                    console.warn(`Failed to fetch tasks for ${label} from ${url}:`, error);
                     return null;
                 }
             })
         );
         processTaskResults(results, token, room, name);
     } catch (error) {
-        console.error("Failed to fetch all tasks:", error); // Log error for overall task fetching
+        console.error("Failed to fetch all tasks:", error);
         throw new Error('Failed to fetch tasks');
     }
 }
@@ -276,7 +284,6 @@ async function loadTasks(tasks, token, room, tipo) {
         clearInterval(countdownInterval);
         showNotification('Tarefas concluídas!', `${completedTasks} tarefas foram feitas com sucesso.`, 'success');
     } else if (!shouldStopExecution && completedTasks === 0 && totalTasksFound > 0) {
-        // This case handles when tasks were found but none were completed (e.g., all were redaction or failed)
         showNotification('Processo Concluído', 'Nenhuma tarefa processável foi encontrada ou todas eram redações.', 'info');
     }
 }
@@ -301,7 +308,6 @@ function processTaskDetails(details) {
             answer = { status: 'error', message: 'Type=media system require url' };
         } else if (question.options && typeof question.options === 'object') {
             const options = Object.values(question.options);
-            // Ensure options is not empty to prevent errors
             if (options.length > 0) {
                 const correctIndex = Math.floor(Math.random() * options.length);
 
@@ -309,11 +315,9 @@ function processTaskDetails(details) {
                     answer[i] = i === correctIndex;
                 });
             } else {
-                // Handle case where options might be an empty object or array
                 answer = {};
             }
         } else {
-            // Default answer for other question types not explicitly handled
             answer = {};
         }
 
@@ -334,12 +338,11 @@ async function processTask(task, answersData, token, room, index, total, redacao
     if (isRedacao(task)) {
         if (!redacaoLogFeito) {
             // showNotification('Tarefa de Redação', `A tarefa "${taskTitle}" é uma redação e será ignorada.`, 'info');
-            redacaoLogFeito = true; // Set flag to true after first redaction notification
+            redacaoLogFeito = true;
         }
-        return; // Skip redaction tasks
+        return;
     }
 
-    // Proceed with submitting and updating answers for non-redaction tasks
     await submitAnswers(taskId, answersData, token, room, taskTitle, index, total);
 }
 
@@ -488,7 +491,6 @@ function createAnswerPayload(taskQuestion) {
                     ])
                 );
             } else {
-                // For other types, if no specific handling or options, return an empty object or null
                 answerPayload.answer = {};
                 console.warn(`Unhandled question type: ${taskQuestion.type} for question ${taskQuestion.id}. Using empty answer.`);
             }
@@ -516,32 +518,32 @@ function iniciarModalGlobal(totalTasks) {
 function atualizarModalGlobal(taskTitle, secondsRemaining, currentIndex, totalTasks) {
     document.getElementById('currentTask').textContent = taskTitle;
     document.getElementById('taskProgress').textContent = currentIndex;
-    document.getElementById('progressBar').style.width = '100%'; // Full width initially for new task
+    document.getElementById('progressBar').style.width = '100%';
 
     clearInterval(countdownInterval);
     if (secondsRemaining > 0) {
         startCountdown(secondsRemaining);
     } else {
         document.getElementById('timeRemaining').textContent = 'Instantâneo';
-        document.getElementById('progressBar').style.width = '0%'; // Reset for instant tasks
+        document.getElementById('progressBar').style.width = '0%';
     }
 }
 
 function startCountdown(seconds) {
     let remaining = seconds;
     updateTimeDisplay(remaining);
-    document.getElementById('progressBar').style.width = '100%'; // Ensure full width at start of countdown
+    document.getElementById('progressBar').style.width = '100%';
 
     countdownInterval = setInterval(() => {
         remaining--;
         updateTimeDisplay(remaining);
         
         const percentageRemaining = (remaining / seconds) * 100;
-        document.getElementById('progressBar').style.width = `${Math.max(0, percentageRemaining)}%`; // Ensure it doesn't go below 0%
+        document.getElementById('progressBar').style.width = `${Math.max(0, percentageRemaining)}%`;
 
         if (remaining <= 0) {
             clearInterval(countdownInterval);
-            document.getElementById('progressBar').style.width = '0%'; // Reset after countdown
+            document.getElementById('progressBar').style.width = '0%';
         }
     }, 1000);
 }
