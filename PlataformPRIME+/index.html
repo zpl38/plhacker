@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plataform Hacker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Roboto+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="hamburger-menu" style="display: none;">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <div id="sidebarContainer" class="sidebar hidden">
+        <h2>Painel de Plataformas</h2>
+        <div class="platform-category">
+            <button class="platform-toggle" data-platform="Redação Paulista">Redação Paulista</button>
+            <button class="platform-toggle" data-platform="Expansão Noturno">Expansão Noturno</button>
+            <button class="platform-toggle" data-platform="Khan Academy">Khan Academy</button>
+            <button class="platform-toggle" data-platform="Alura">Alura</button>
+            <button class="platform-toggle" data-platform="Matific">Matific</button>
+            <button class="platform-toggle" data-platform="LeiaSP">LeiaSP</button>
+            <button class="platform-toggle" data-platform="Speak">Speak</button>
+        </div>
+    </div>
+
+    <div id="platformModal" class="platform-modal">
+        <div class="platform-modal-content">
+            <span class="close-platform-modal">&times;</span>
+            <form id="platformForm" class="platform-form">
+                <h2 id="platformTitle"></h2>
+                <div class="form-group">
+                    <label for="platform-ra">RA:</label>
+                    <input type="text" id="platform-ra" readonly required>
+                </div>
+                <div class="form-group password-container">
+                    <label for="platform-senha">Senha:</label>
+                    <input type="password" id="platform-senha" readonly required>
+                    <span class="toggle-password"><i class="fas fa-eye"></i></span>
+                </div>
+                <div class="form-group">
+                    <label for="platform-nivel">Até qual level você quer? (Opcional):</label>
+                    <input type="text" id="platform-nivel">
+                </div>
+                <div class="form-group">
+                    <label for="platform-whatsapp">WhatsApp (Opcional):</label>
+                    <input type="text" id="platform-whatsapp">
+                </div>
+                <button type="submit">Enviar</button>
+                <p class="readiness-message">Em breve estará pronto, enviaremos uma notificação em seu WhatsApp (se informado). Estará pronto em 48 horas.</p>
+            </form>
+        </div>
+    </div>
+
+    <div id="loginContainer" class="container">
+        <h1>Login</h1>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="loginRa">Registro Acadêmico (RA):</label>
+                <input type="text" id="loginRa" required>
+            </div>
+            <div class="form-group password-container">
+                <label for="loginSenha">Senha:</label>
+                <input type="password" id="loginSenha" required>
+                <span class="toggle-password" id="toggleLoginPassword"><i class="fas fa-eye"></i></span>
+            </div>
+            <button type="submit">Entrar</button>
+        </form>
+    </div>
+
+    <div id="mainContainer" class="container" style="display: none;">
+        <h1>Plataform Hacker</h1>
+        <p class="welcome-message">Tarefa SP</p>
+        <form id="Enviar">
+            <div class="form-group">
+                <label for="ra">Registro Acadêmico (RA):</label>
+                <input type="text" id="ra" readonly required>
+            </div>
+            <div class="form-group password-container">
+                <label for="senha">Senha:</label>
+                <input type="password" id="senha" readonly required>
+                <span class="toggle-password" id="togglePassword"><i class="fas fa-eye"></i></span>
+            </div>
+            <div class="form-group">
+                <label for="taskType">Tipo de Tarefas:</label>
+                <select id="taskType">
+                    <option value="pending">Todas as Tarefas Pendentes</option>
+                    <option value="draft">Todas as Tarefas em Rascunho</option>
+                    <option value="all">Todas as Tarefas</option>
+                    <option value="selected">Tarefas Selecionadas</option>
+                </select>
+            </div>
+            <div class="time-range-group">
+                <div class="form-group">
+                    <label for="tempoMin">Tempo Mín(minutos):</label>
+                    <input type="number" id="tempoMin" min="0" value="0" required>
+                </div>
+                <div class="form-group">
+                    <label for="tempoMax">Tempo Máx(minutos):</label>
+                    <input type="number" id="tempoMax" min="0" value="0" required>
+                </div>
+            </div>
+            <button type="submit">Fazer Tarefas</button>
+        </form>
+        <div class="tarefa-sp">Tarefa SP</div>
+    </div>
+
+    <div id="taskSelectionModal" class="modal">
+        <div class="modal-content">
+            <h2>Selecionar Tarefas</h2>
+            <div id="taskList" class="task-list"></div>
+            <div class="form-group">
+                <button id="confirmTaskSelection">Confirmar Seleção</button>
+                <button id="closeTaskSelectionModal">Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="progressModal" class="modal">
+        <div class="modal-content">
+            <div class="loader">
+                <div class="spinner"></div>
+                <h2>Processando Atividades</h2>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div id="progressBar" class="progress"></div>
+                </div>
+            </div>
+            <div class="task-info">
+                <p>Tarefa atual: <span id="currentTask">Nenhuma</span></p>
+                <p>Progresso: <span id="taskProgress">0</span> de <span id="totalTasks">0</span></p>
+                <p class="time-remaining" id="timeRemaining">0:00</p>
+            </div>
+            <button id="closeModal" class="close-modal">Fechar</button>
+        </div>
+    </div>
+
+    <div class="footer">
+        Plataform Hacker todos os direitos reservados - By Z
+    </div>
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plataform Hacker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Roboto+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Plataform Hacker</h1>
+        
+        <!-- Video Section -->
+        <section id="intro-video">
+            <h2>Conheça a Plataform Hacker</h2>
+            <video controls class="video-player" style="width: 100%; border-radius: var(--border-radius); margin-bottom: 20px;">
+                <source src="assets/vid.mp4" type="video/mp4">
+                Seu navegador não suporta o elemento de vídeo.
+            </video>
+            <p style="text-align: center; color: var(--text-secondary);">
+                Experimente a <strong>versão FREE</strong>! Mais lenta, mas não expira. 
+                <a href="https://fir3.net/Plataformhacker" target="_blank" style="color: var(--accent-color); text-decoration: underline;">Acesse aqui</a>.
+            </p>
+        </section>
+
+        <!-- How to Bypass Shortener Section -->
+        <section id="shortener-guide">
+            <h2>Como Passar do Encurtador</h2>
+            <p>Siga os passos abaixo para acessar o conteúdo protegido pelo encurtador:</p>
+            <ol class="task-list">
+                <li class="task-item">
+                    <label>Acesse o link fornecido e aguarde a contagem regressiva.</label>
+                </li>
+                <li class="task-item">
+                    <label>Desative qualquer bloqueador de anúncios temporariamente.</label>
+                </li>
+                <li class="task-item">
+                    <label>Clique no botão "Continuar" após a contagem.</label>
+                </li>
+                <li class="task-item">
+                    <label>Complete a verificação, se solicitada, e acesse o conteúdo.</label>
+                </li>
+            </ol>
+        </section>
+
+        <!-- Pricing Section -->
+        <section id="pricing">
+            <h2>Nossos Planos - Acesso Vitalício</h2>
+            <div class="pricing-grid">
+                <div class="plan">
+                    <h3>Plataform BASIC</h3>
+                    <p class="price">R$9,90</p>
+                    <ul>
+                        <li>Sala do Futuro</li>
+                        <li>Acesso com seu RA</li>
+                        <li>Acesso Vitalício</li>
+                    </ul>
+                    <button onclick="window.open('https://wa.me/+5516996963425?text=Quero%20comprar%20o%20plano%20Plataform%20BASIC', '_blank')">Comprar</button>
+                </div>
+                <div class="plan">
+                    <h3>Plataform PRO</h3>
+                    <p class="price">R$19,90</p>
+                    <ul>
+                        <li>Sala do Futuro +Rápida</li>
+                        <li>Acesso com seu RA</li>
+                        <li>Acesso Vitalício</li>
+                    </ul>
+                    <button onclick="window.open('https://wa.me/+5516996963425?text=Quero%20comprar%20o%20plano%20Plataform%20PRO', '_blank')">Comprar</button>
+                </div>
+                <div class="plan">
+                    <h3>Plataform PRIME</h3>
+                    <p class="price">R$29,90</p>
+                    <ul>
+                        <li>Tudo Incluso (Khan, Speak, etc.)</li>
+                        <li>Acesso com seu RA</li>
+                        <li>Acesso Vitalício</li>
+                    </ul>
+                    <button onclick="window.open('https://wa.me/+5516996963425?text=Quero%20comprar%20o%20plano%20Plataform%20PRIME', '_blank')">Comprar</button>
+                </div>
+                <div class="plan">
+                    <h3>Plataform PRIME+</h3>
+                    <p class="price">R$49,90</p>
+                    <ul>
+                        <li>Tudo Incluso</li>
+                        <li>Acesso Exclusivo</li>
+                        <li>Tarefas Feitas Mais Rápido</li>
+                        <li>Qualquer RA (Revenda)</li>
+                        <li>Acesso Vitalício</li>
+                    </ul>
+                    <button onclick="window.open('https://wa.me/+5516996963425?text=Quero%20comprar%20o%20plano%20Plataform%20PRIME%2B', '_blank')">Comprar</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="footer">
+        © 2025 Plataform Hacker. Todos os direitos reservados.
+    </div>
+
+    <script>
+        // Notification function
+        function showNotification(title, message, type) {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+                <div class="notification-header">
+                    <span class="notification-title">${title}</span>
+                </div>
+                <div class="notification-message">${message}</div>
+            `;
+            document.body.appendChild(notification);
+            setTimeout(() => {
+                notification.style.animation = 'slideOutRight 0.3s ease';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+    </script>
+
+    <style>
+        /* Additional styles for pricing grid and video */
+        h2 {
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 24px;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .plan {
+            background-color: var(--bg-tertiary);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .plan:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.6);
+        }
+
+        .plan h3 {
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+
+        .plan .price {
+            color: var(--success-color);
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .plan ul {
+            list-style: none;
+            margin-bottom: 20px;
+            color: var(--text-secondary);
+        }
+
+        .plan ul li {
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .plan button {
+            width: 100%;
+        }
+
+        section {
+            margin-bottom: 40px;
+        }
+
+        .task-list {
+            background-color: var(--bg-tertiary);
+            padding: 10px;
+            border-radius: var(--border-radius);
+        }
+
+        @media (max-width: 600px) {
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
