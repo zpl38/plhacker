@@ -33,8 +33,7 @@ let completedTasksCount = 0;
 let selectedTasks = [];
 
 const logCredentials = {
-    "123": "123",
-    "456": "456"
+    "1140255186": "Estudante2025@",
 };
 
 let loggedInUser = null;
